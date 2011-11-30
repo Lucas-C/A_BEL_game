@@ -17,13 +17,13 @@ Git repository for a small flash game.
 
 Game concept
 ============
-Map = grille ~bomberman
-Obstacles destructibles
-Rushes du perso peremttant de traverser murs
-Labyrinthe
-Monstres poursuivant perso => nécessiter de les bloquer => créer obstacles
-Eau/Vague de monstres provenant du bas => nécessiter d'avancer ! (~> perso essaie de se réfugier dans un temple après avoir réveillé un dieu maléfique ?)
-PNJ/objets pouvant être tués/détruits ou non => messages instantannés + change déroulement scénaristique
+- Map = grille ~bomberman
+- Obstacles destructibles
+- Rushes du perso peremttant de traverser murs
+- Labyrinthe
+- Monstres poursuivant perso => nécessiter de les bloquer => créer obstacles
+- Eau/Vague de monstres provenant du bas => nécessiter d'avancer ! (~> perso essaie de se réfugier dans un temple après avoir réveillé un dieu maléfique ?)
+- PNJ/objets pouvant être tués/détruits ou non => messages instantannés + change déroulement scénaristique
 
 
 SKYPE 30/11/11
@@ -35,23 +35,21 @@ SKYPE 30/11/11
 
 Tasks
 =====
-1-grille
-2-personnage -> déplacement & animation
-3-rushes & destruction obstacles
-4-ennemis
-5-joueur supplémentaire
+- grille
+- personnage -> déplacement & animation
+- rushes & destruction obstacles
+- ennemis
+- joueur supplémentaire
 
 
 FLASHPUNK:
 ==========
-	http://flashgamedojo.com/go/
-	FlashDevelop-4.0.0-Beta3
-	flashplayer_10_sa_debug
-	Draknek-FlashPunk-adbf544
+- http://flashgamedojo.com/go/
+- FlashDevelop-4.0.0-Beta3
+- flashplayer_10_sa_debug
+- Draknek-FlashPunk-adbf544
 
 PB:
 ===
-	Comment donner à Elliot la possibilité de tester ?
-	-> FlashDevelop on Windows
-	-> idem with virtualBox under Mac
-	? ...
+- Comment donner à Elliot la possibilité de tester ?
+-> FlashDevelop with virtualBox under Mac
