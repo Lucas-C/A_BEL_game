@@ -3,6 +3,10 @@ package bel.level
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
 
+	/**
+	 * Image behind the level
+	 * @author Lucas Cimon, Benoît Morel
+	 */
 	public class Background extends Entity 
 	{
 		[Embed(source = '../../../assets/background.png')] private const BACKGROUND:Class;

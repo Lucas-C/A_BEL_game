@@ -4,6 +4,10 @@ package
 	import net.flashpunk.FP;
 	import bel.level.Level;
 	
+	/**
+	 * Program calling point
+	 * @author Lucas Cimon, Benoît Morel
+	 */
 	public class Main extends Engine 
 	{
 		public function Main():void 

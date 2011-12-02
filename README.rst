@@ -78,4 +78,7 @@ class Tile => si hérite de Entity, level ~ 30x500x20 sizeof(pointeur)
 SEANCE CODE 2/12/11
 ===================
 
-TODO: fullscreen
+TODO:
+	fullscreen
+	dyn img loading
+	assets in fullpath
