@@ -72,3 +72,10 @@ rush diagonal
 obstacles émettant un souffle ?
 class Tile => si hérite de Entity, level ~ 30x500x20 sizeof(pointeur)
 => "smart" progressive loading ?
+
+
+
+SEANCE CODE 2/12/11
+===================
+
+TODO: fullscreen
