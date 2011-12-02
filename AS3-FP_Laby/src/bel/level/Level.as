@@ -1,5 +1,6 @@
 package bel.level 
 {
+	import bel.character.Player;
 	import net.flashpunk.World;
 	import bel.level.Background;
 
@@ -12,6 +13,7 @@ package bel.level
 		public function Level()
 		{
 			add(new Background());
+			add(new Player());
 		}
 	}
 
