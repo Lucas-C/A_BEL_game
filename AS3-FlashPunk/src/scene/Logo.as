@@ -25,8 +25,12 @@ package scene
 			this.y = SCROLL_MIDDLE_POS;
 		}
 		
+		var lastTime:Number = 0;
 		override public function update():void 
 		{
+			var time:Number = getTimer();
+			trace(time - lastTime);
+			lastTime = time;
 			this.y = SCROLL_MIDDLE_POS + SCROLL_SHIFT * Math.cos(getTimer() / SCROLL_SPEED_FACTOR);
 			super.update();
 		}
