@@ -1,15 +1,17 @@
 package bel.character 
 {
+	import bel.utils.DynGraphic;
+	import flash.display.BitmapData;
 	import net.flashpunk.*;
 	import net.flashpunk.graphics.*;
 	import net.flashpunk.utils.*;
+	
 	/**
 	 * Character controlled by the player
 	 * @author Lucas Cimon, Benoît Morel
 	 */
 	public class Player extends Entity 
 	{
-		[Embed(source = '../../../assets/playeranim.png')] private const PLAYER_PIC:Class;
 		private const PLAYER_LAYER:int = 3;
 		private const PLAYER_FPS:int = 5;
 		private const RUSH_SPEED:int = 15;
@@ -17,9 +19,16 @@ package bel.character
 		private var m_speed:int = NORMAL_SPEED;
 		private var m_animDirection:String = "up";
 		private var m_animState:String = "normal";
-		public var m_anim:Spritemap = new Spritemap(PLAYER_PIC, 32, 32);
+		public var m_anim:Spritemap;
 		
 		public function Player() 
+		{
+			new DynGraphic("assets/playeranim.png", this,
+				function assign(img:BitmapData, p:Player):void { p.m_anim = new Spritemap(img, 32, 32); } );
+			this.layer = PLAYER_LAYER;		
+		}
+		
+		private function init():void
 		{
 			m_anim.add("normalup", [0, 7], PLAYER_FPS, true);
 			m_anim.add("normalright", [1, 2], PLAYER_FPS, true);
@@ -28,15 +37,15 @@ package bel.character
 			m_anim.add("rushup", [8, 15], PLAYER_FPS, true);
 			m_anim.add("rushright", [9, 10], PLAYER_FPS, true);
 			m_anim.add("rushdown", [11, 12], PLAYER_FPS, true);
-			m_anim.add("rushleft", [13, 14], PLAYER_FPS, true);			
+			m_anim.add("rushleft", [13, 14], PLAYER_FPS, true);
 			m_anim.play("normalup");
-			this.layer = PLAYER_LAYER;
 			graphic = m_anim;
-			
 		}
 		
 		override public function update():void 
 		{
+			if (graphic == null && m_anim != null)
+				init();
 			updatePosition();
 			super.update();
 		}

@@ -13,14 +13,16 @@ package bel.utils
 	 * e.graphic will be, sooner or later, loaded with the corresponding asset
 	 * @author Lucas Cimon, Benoît Morel 
 	 */
-	public class DynImage
+	public class DynGraphic
 	{
-		static private var m_imageLoader:Loader = new Loader();
+		private var m_imageLoader:Loader = new Loader();
 		private var m_entity:Entity;
+		private var m_callback:Function;
 		
-		public function DynImage(filename:String, e:Entity)
+		public function DynGraphic(filename:String, e:Entity, f:Function)
 		{
 			m_entity = e;
+			m_callback = f;
 			m_imageLoader.contentLoaderInfo.addEventListener(Event.INIT, imgLoadingCallback);
 			m_imageLoader.load(new URLRequest(filename));
 		}
@@ -29,8 +31,7 @@ package bel.utils
 			assert(m_imageLoader.content != null);
 			var bitmap:Bitmap = Bitmap(m_imageLoader.content);
 			var bitmapData:BitmapData = bitmap.bitmapData;
-			m_entity.graphic = new Image(bitmapData);
+			m_callback(bitmapData, m_entity);
 		}
 	}
-
 }
