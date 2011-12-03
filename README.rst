@@ -54,24 +54,25 @@ PB:
 ===
 - Comment donner à Elliot la possibilité de tester ?
 -> FlashDevelop with virtualBox under Mac
+x	OK, solution found with dynLoading
 
 
 REUNION CONCEPTION 1/12/11
 ==========================
 
-dT global
-pos:Number
-charger fichiers - level (XML) => editeur ?
-nouveau mouvement : se glisser dans une diagonale comme une souris
-animation du perso : verti/horiz comme Zelda aLttP & dépend seulement de 1ere touche dir pressée
-bounding box : carré (=> afficher en mode Debug)
-+ glisser sur obstacles (déplacement latéral vers trou proche si trou existe)
-gestion double touche pressée : les deux mvmt appliqués dans la même frame
--> renormaliser le mouvement diagonal
-rush diagonal
-obstacles émettant un souffle ?
-class Tile => si hérite de Entity, level ~ 30x500x20 sizeof(pointeur)
-=> "smart" progressive loading ?
+-X	dT global
+-X	pos:Number
+-	charger fichiers - level (XML) => editeur ?
+-	nouveau mouvement : se glisser dans une diagonale comme une souris
+-	animation du perso : verti/horiz comme Zelda aLttP & dépend seulement de 1ere touche dir pressée
+-	bounding box : carré (=> afficher en mode Debug)
+	+ glisser sur obstacles (déplacement latéral vers trou proche si trou existe)
+-	gestion double touche pressée : les deux mvmt appliqués dans la même frame
+	-> renormaliser le mouvement diagonal
+-	rush diagonal
+-	obstacles émettant un souffle ?
+-	class Tile => si hérite de Entity, level ~ 30x500x20 sizeof(pointeur)
+	=> "smart" progressive loading ?
 
 
 
@@ -79,6 +80,6 @@ SEANCE CODE 2/12/11
 ===================
 
 TODO:
-	fullscreen
-	dyn img loading
-	assets in fullpath
+-	fullscreen
+-x	dyn img loading
+-x	assets in fullpath
