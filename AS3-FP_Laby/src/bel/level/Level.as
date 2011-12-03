@@ -15,6 +15,8 @@ package bel.level
 			add(new Background());
 			add(new Player());
 		}
+		
+
 	}
 
 }
