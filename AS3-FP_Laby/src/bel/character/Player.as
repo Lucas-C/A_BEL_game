@@ -12,7 +12,6 @@ package bel.character
 	 */
 	public class Player extends Entity 
 	{
-		private const PLAYER_LAYER:int = 3;
 		private const PLAYER_FPS:int = 5;
 		private const RUSH_SPEED:int = 15;
 		private const NORMAL_SPEED:int = 5;
@@ -25,7 +24,7 @@ package bel.character
 		{
 			new DynGraphic("assets/playeranim.png", this,
 				function assign(img:BitmapData, p:Player):void { p.m_anim = new Spritemap(img, 32, 32); } );
-			this.layer = PLAYER_LAYER;
+			this.layer = 5;
 		}
 		
 		private function init():void

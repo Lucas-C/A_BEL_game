@@ -9,12 +9,10 @@ package bel.level
 	 */
 	public class Background extends Entity 
 	{
-		private const BACKGROUND_LAYER:int = 10;
-		
 		public function Background() 
 		{
 			dynImgLoad("assets/background.png", this);
-			this.layer = BACKGROUND_LAYER;
+			this.layer = 10;
 		}
 	}
 

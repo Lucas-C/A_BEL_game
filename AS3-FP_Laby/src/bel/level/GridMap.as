@@ -11,7 +11,6 @@ package bel.level
 	 */
 	public class GridMap extends Entity
 	{
-		private const GRIDMAP_LAYER:int = 9;
 		private const TILE_SIZE:int = 32;
 		
 		private var m_width:int;
@@ -26,7 +25,7 @@ package bel.level
 			m_height = height;
 			new DynGraphic("assets/tilesheet.png", this,
 				function assign(img:BitmapData, g:GridMap):void { g.tileSheet = img; } );
-			layer = GRIDMAP_LAYER;
+			layer = 9;
 		}
 		
 		public function set tileSheet(img:BitmapData):void
@@ -39,11 +38,15 @@ package bel.level
 		public function loadLevel():void
 		{
 			// NOTE: loadFromString() bug with column = 0, row = 0, index = 1
-			for (var i:int = 0; i < m_width; ++i) {
-				m_tileMap.setTile(i, 0, 0);
-				m_tileMap.setTile(i, m_height - 1, 0);
-				for (var j:int = 1; j < m_height - 1; ++j)
-					m_tileMap.setTile(i, j, i % 2);
+			for (var i:int = 0; i < m_height; ++i) {
+				labyLines[i] = new Array();
+				labyLines[i][0] = new EmptyFloor(m_tileMap, i, 0);
+				labyLines[i][m_width - 1] = new EmptyFloor(m_tileMap, i, m_width - 1);
+				for (var j:int = 1; j < m_width - 1; ++j)
+					if (i % 2)
+						labyLines[i][j] = new StaticObstacle(m_tileMap, i, j);
+					else
+						labyLines[i][j] = new EmptyFloor(m_tileMap, i, j);
 			}
 		}
 
