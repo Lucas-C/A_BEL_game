@@ -1,4 +1,8 @@
 // NOTE: to save player statistics, see http://www.tutorio.com/tutorial/flash-cookies-local-shared-objects-tutorial
+// TO TEST: replace Main.as content with this
+
+// OTHER SOLUTION : http://www.mapeditor.org/ && http://flashpunk.net/forums/index.php?topic=90.0
+
 package
 {
     import flash.display.Sprite;
@@ -11,17 +15,17 @@ package
 	 * ...
 	 * @author Brian Hodge (brian@hodgedev.com)
 	 */
-	public class Main extends Sprite 
+	public class Main extends Sprite
 	{
 			private var _xml:XML;
 
-			public function Main():void 
+			public function Main():void
 			{
 					if (stage) init();
 					else addEventListener(Event.ADDED_TO_STAGE, init);
 			}
 
-			private function init(e:Event = null):void 
+			private function init(e:Event = null):void
 			{
 					removeEventListener(Event.ADDED_TO_STAGE, init);
 
@@ -29,8 +33,8 @@ package
 					stage.addEventListener(MouseEvent.MOUSE_DOWN, _onMouseDown);
 
 					_xml= <xml>
-							  <test>data</test>
-						  </xml>;
+						  <test>data</test>
+					 </xml>;
 			}
 			private function _onMouseDown(e:MouseEvent):void
 			{

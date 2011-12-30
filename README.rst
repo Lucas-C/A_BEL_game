@@ -79,7 +79,15 @@ REUNION CONCEPTION 1/12/11
 SEANCE CODE 2/12/11
 ===================
 
-TODO:
--	fullscreen
--x	dyn img loading
--x	assets in fullpath
+-?	fullscreen
+-X	dyn img loading
+-X	assets in fullpath
+-	test DynGraphic with a lot of img loading
+-	catch assert exception
+
+
+
+SEANCE CODE 12/12/11
+
+- inspis : The Adventures of Charles Dumbbell, Star Guard, Monaco, Bomberman
+"Error #2000: Aucun contexte de sécurité n'est actif" => erreur chargement image

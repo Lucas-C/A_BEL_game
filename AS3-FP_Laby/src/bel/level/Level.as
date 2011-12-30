@@ -3,6 +3,7 @@ package bel.level
 	import bel.character.Player;
 	import net.flashpunk.World;
 	import bel.level.Background;
+	import bel.level.GridMap;
 
 	/**
 	 * Description of a level
@@ -12,6 +13,7 @@ package bel.level
 	{
 		public function Level()
 		{
+			add(new GridMap());
 			add(new Background());
 			add(new Player());
 		}

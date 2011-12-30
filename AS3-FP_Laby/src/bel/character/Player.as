@@ -25,7 +25,7 @@ package bel.character
 		{
 			new DynGraphic("assets/playeranim.png", this,
 				function assign(img:BitmapData, p:Player):void { p.m_anim = new Spritemap(img, 32, 32); } );
-			this.layer = PLAYER_LAYER;		
+			this.layer = PLAYER_LAYER;
 		}
 		
 		private function init():void
@@ -48,11 +48,6 @@ package bel.character
 				init();
 			updatePosition();
 			super.update();
-		}
-		
-		override public function render():void 
-		{
-			super.render();
 		}
 		
 		public function updatePosition(): void
