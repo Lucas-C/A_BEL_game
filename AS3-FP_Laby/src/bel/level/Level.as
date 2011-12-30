@@ -13,7 +13,7 @@ package bel.level
 	{
 		public function Level()
 		{
-			add(new GridMap());
+			add(new GridMap(16, 16));
 			add(new Background());
 			add(new Player());
 		}
