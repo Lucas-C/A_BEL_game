@@ -1,7 +1,6 @@
 package bel.graphics 
 {
 	import net.flashpunk.Entity;
-	import bel.utils.dynImgLoad;
 
 	/**
 	 * My name is Lucas Cimon and I never write (useful) comments
@@ -13,7 +12,7 @@ package bel.graphics
 		public function HUD() 
 		{
 			m_pic = new Entity();
-			dynImgLoad("assets/playeranim.png", m_pic);
+			//dynImgLoad("assets/playeranim.png", m_pic);
 			m_pic.x = 50;
 			m_pic.y = 50;
 

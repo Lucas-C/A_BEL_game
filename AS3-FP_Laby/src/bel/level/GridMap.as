@@ -4,19 +4,20 @@ package bel.level
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Tilemap;
 	import bel.utils.DynGraphic;
+	import net.flashpunk.utils.Key;
+	import net.flashpunk.utils.Input;
 	
 	/**
 	 * Container for tiles
+	 * NOTE: TileMap.floodFill == pot de peinture
 	 * @author Lucas Cimon, Benoît Morel
 	 */
 	public class GridMap extends Entity
 	{
-		private const TILE_SIZE:int = 32;
-		
 		private var m_width:int;
 		private var m_height:int;
 
-		private var m_tileMap:Tilemap;
+		private var m_tileMap:Tilemap; // Useful to render many tiles efficiently
 		private var labyLines:Array = new Array();
 		
 		public function GridMap(width:int, height:int)
@@ -30,13 +31,16 @@ package bel.level
 		
 		public function set tileSheet(img:BitmapData):void
 		{
-			m_tileMap = new Tilemap(img, m_width * TILE_SIZE, m_height * TILE_SIZE, TILE_SIZE, TILE_SIZE);
+			m_tileMap = new Tilemap(img,
+				m_width * Tile.SIZE_IN_PIXELS, m_height * Tile.SIZE_IN_PIXELS,
+				Tile.SIZE_IN_PIXELS, Tile.SIZE_IN_PIXELS);
 			graphic = m_tileMap;
 			loadLevel();
 		}
 		
 		public function loadLevel():void
 		{
+			// TODO; include from XML
 			// NOTE: loadFromString() bug with column = 0, row = 0, index = 1
 			for (var i:int = 0; i < m_height; ++i) {
 				labyLines[i] = new Array();
@@ -53,7 +57,6 @@ package bel.level
 		override public function update():void 
 		{
 			super.update();
-			// test: floodFill() & shiftTiles()
 		}		
 	}
 }

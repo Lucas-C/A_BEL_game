@@ -16,27 +16,28 @@ package bel.level
 	{
 		public function Level()
 		{
-			var globals: GameGlobals = GameGlobals.getInstance();
-			globals.setGridMap(new GridMap(64, 64));
-			add(globals.getGridMap());
+			var globals: GameGlobals = GameGlobals.get;
+
+			globals.level = this;
+
 			add(new Background());
-			var player: Player = new Player;
-			add(player);
-			globals.setPlayer(player);
-			add(new HUD());
-			globals.setCamera(new ScrollingCamera());
+
+			globals.gridMap = new GridMap(64, 64);
+			add(globals.gridMap);
 			
+			add(new HUD());
+
+			globals.player = new Player;
+			add(globals.player);
+			
+			globals.camera = new ScrollingCamera();
 		}
 		
 		override public function update():void  
 		{
 			super.update();
-			GameGlobals.getInstance().getCamera().update();
+			GameGlobals.get.camera.update();
 
 		}
-
-		
-
 	}
-
 }
