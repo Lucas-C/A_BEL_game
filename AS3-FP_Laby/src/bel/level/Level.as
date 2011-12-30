@@ -7,6 +7,8 @@ package bel.level
 	import bel.level.GridMap;
 	import bel.utils.GameGlobals;
 	import net.flashpunk.FP;
+	import net.flashpunk.utils.Input;
+	import net.flashpunk.utils.Key;
 	
 	/**
 	 * Description of a level
@@ -25,6 +27,7 @@ package bel.level
 			globals.setPlayer(player);
 			add(new HUD());
 			globals.setCamera(new ScrollingCamera());
+			globals.getCamera().m_speed = 50;
 			
 		}
 		
@@ -32,7 +35,17 @@ package bel.level
 		{
 			super.update();
 			GameGlobals.getInstance().getCamera().update();
-
+			cheatCodes();
+		}
+		
+		public function cheatCodes():void 
+		{
+			var globals: GameGlobals = GameGlobals.getInstance();
+			if (Input.check(Key.NUMPAD_8)) {
+				globals.getCamera().m_speed = -50;
+			} else if (Input.check(Key.NUMPAD_2)) {
+				globals.getCamera().m_speed = 50;				
+			}
 		}
 
 		
