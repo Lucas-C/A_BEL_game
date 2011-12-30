@@ -1,10 +1,13 @@
 package bel.level 
 {
 	import bel.character.Player;
+	import bel.graphics.HUD;
 	import net.flashpunk.World;
 	import bel.level.Background;
 	import bel.level.GridMap;
-
+	import bel.utils.GameGlobals;
+	import net.flashpunk.FP;
+	
 	/**
 	 * Description of a level
 	 * @author Lucas Cimon, Benoît Morel
@@ -13,10 +16,25 @@ package bel.level
 	{
 		public function Level()
 		{
-			add(new GridMap(16, 16));
+			var globals: GameGlobals = GameGlobals.getInstance();
+			globals.setGridMap(new GridMap(64, 64));
+			add(globals.getGridMap());
 			add(new Background());
-			add(new Player());
+			var player: Player = new Player;
+			add(player);
+			globals.setPlayer(player);
+			add(new HUD());
+			globals.setCamera(new ScrollingCamera());
+			
 		}
+		
+		override public function update():void  
+		{
+			super.update();
+			GameGlobals.getInstance().getCamera().update();
+
+		}
+
 		
 
 	}
