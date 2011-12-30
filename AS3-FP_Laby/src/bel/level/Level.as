@@ -16,6 +16,7 @@ package bel.level
 	 */
 	public class Level extends World
 	{
+		public var m_pause:Boolean;
 		public function Level()
 		{
 			var globals: GameGlobals = GameGlobals.getInstance();
@@ -28,13 +29,16 @@ package bel.level
 			add(new HUD());
 			globals.setCamera(new ScrollingCamera());
 			globals.getCamera().m_speed = 50;
+			m_pause = false;
 			
 		}
 		
 		override public function update():void  
 		{
-			super.update();
-			GameGlobals.getInstance().getCamera().update();
+			if (!m_pause) {
+				super.update();
+				GameGlobals.getInstance().getCamera().update();
+			}
 			cheatCodes();
 		}
 		
@@ -43,8 +47,13 @@ package bel.level
 			var globals: GameGlobals = GameGlobals.getInstance();
 			if (Input.check(Key.NUMPAD_8)) {
 				globals.getCamera().m_speed = -50;
+			} else if (Input.check(Key.NUMPAD_5)) {
+				globals.getCamera().m_speed = 0;
 			} else if (Input.check(Key.NUMPAD_2)) {
 				globals.getCamera().m_speed = 50;				
+			}
+			if (Input.check(Key.P)) {
+				m_pause = !m_pause;
 			}
 		}
 
