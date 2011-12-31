@@ -47,7 +47,7 @@ package bel.level
 				labyLines[i][0] = new EmptyFloor(m_tileMap, i, 0);
 				labyLines[i][m_width - 1] = new EmptyFloor(m_tileMap, i, m_width - 1);
 				for (var j:int = 1; j < m_width - 1; ++j)
-					if (i % 2)
+					if (!(i % 3) && (j % 6))
 						labyLines[i][j] = new StaticObstacle(m_tileMap, i, j);
 					else
 						labyLines[i][j] = new EmptyFloor(m_tileMap, i, j);

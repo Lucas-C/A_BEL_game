@@ -1,10 +1,11 @@
 package bel.character 
 {
-	import bel.utils.DynGraphic;
 	import flash.display.BitmapData;
 	import net.flashpunk.*;
 	import net.flashpunk.graphics.*;
 	import net.flashpunk.utils.*;
+	import bel.utils.DynGraphic;
+	import bel.level.Tile;
 	
 	/**
 	 * Character controlled by the player
@@ -23,11 +24,14 @@ package bel.character
 		public function Player() 
 		{
 			new DynGraphic("assets/playeranim.png", this,
-				function assign(img:BitmapData, p:Player):void { p.m_anim = new Spritemap(img, 32, 32); } );
+				function assign(img:BitmapData, p:Player):void { p.m_anim = new Spritemap(img, 32, 32); p.initAnim(); } );
 			this.layer = 5;
+			this.type = "player";
+			this.width = Tile.SIZE_IN_PIXELS;
+			this.height = Tile.SIZE_IN_PIXELS;
 		}
 		
-		private function init():void
+		private function initAnim():void
 		{
 			m_anim.add("normalup", [0, 7], PLAYER_FPS, true);
 			m_anim.add("normalright", [1, 2], PLAYER_FPS, true);
@@ -43,8 +47,6 @@ package bel.character
 		
 		override public function update():void 
 		{
-			if (graphic == null && m_anim != null)
-				init();
 			updatePosition();
 			super.update();
 		}
@@ -54,20 +56,28 @@ package bel.character
 			var animDirection: String = getAnimDirection();
 			for (var i: int = 0; i < m_speed; i++) {
 				if (Input.check(Key.UP)) {
-					unityGoUp();
-					animDirection = "up";
+					if (!collide("obstacle", this.x, this.y - 1)) {
+						this.y -= 1;
+						animDirection = "up";
+					}
 				} 
 				if (Input.check(Key.DOWN)) {
-					unityGoDown();
-					animDirection = "down";
+					if (!collide("obstacle", this.x, this.y + 1)) {
+						this.y += 1;
+						animDirection = "down";
+					}
 				} 
 				if (Input.check(Key.LEFT)) {
-					unityGoLeft();
-					animDirection = "left";
+					if (!collide("obstacle", this.x - 1, this.y)) {
+						this.x -= 1;
+						animDirection = "left";
+					}
 				} 
 				if (Input.check(Key.RIGHT)) {
-					unityGoRight();
-					animDirection = "right";
+					if (!collide("obstacle", this.x + 1, this.y)) {
+						this.x += 1;
+						animDirection = "right";
+					}
 				} 				
 			}
 			if (Input.check(Key.CONTROL)) {
@@ -76,26 +86,6 @@ package bel.character
 				stopRush();
 			}
 			setAnimDirection(animDirection);
-		}
-		
-		public function unityGoUp(): void
-		{
-			this.y -= 1;
-		}
-		
-		public function unityGoDown(): void
-		{
-			this.y += 1;
-		}
-		
-		public function unityGoLeft(): void 
-		{
-			this.x -= 1;
-		}
-		
-		public function unityGoRight(): void
-		{
-			this.x += 1;
 		}
 		
 		public function setAnimDirection(direction:String): void
