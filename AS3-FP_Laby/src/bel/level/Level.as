@@ -23,9 +23,7 @@ package bel.level
 
 			globals.level = this;
 
-			add(new Background());
-
-			globals.gridMap = new GridMap(FP.width / Tile.SIZE_IN_PIXELS, 64);
+			globals.gridMap = new GridMap();
 			add(globals.gridMap);
 			
 			add(new HUD());
@@ -43,7 +41,10 @@ package bel.level
 			if (!m_pause) {
 				super.update();
 				var progress:Number = GameGlobals.get.camera.update();
-				GameGlobals.get.gridMap.clamp(progress);
+				if (!GameGlobals.get.gridMap.clamp(progress)) {
+					FP.log("Level end !");
+					m_pause = true;
+				}
 			}
 			cheatCodes();
 		}

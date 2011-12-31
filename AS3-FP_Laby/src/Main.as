@@ -12,7 +12,7 @@ package
 	{
 		public function Main():void 
 		{
-			super(1024, 768, 60, false);
+			super(800, 600, 60, false);
 			FP.world = new Level();
 			CONFIG::debug {
 				FP.console.enable();

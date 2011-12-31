@@ -1,9 +1,10 @@
 package bel.character 
 {
 	import flash.display.BitmapData;
-	import net.flashpunk.*;
-	import net.flashpunk.graphics.*;
-	import net.flashpunk.utils.*;
+	import net.flashpunk.Entity;
+	import net.flashpunk.graphics.Spritemap;
+	import net.flashpunk.utils.Input;
+	import net.flashpunk.utils.Key;
 	import bel.utils.DynGraphic;
 	import bel.level.Tile;
 	
@@ -133,10 +134,7 @@ package bel.character
 		public function isRushing():Boolean 
 		{
 			return getAnimState() == "rush";
-		}
-		
-
-		
+		}		
 	}
 
 }
