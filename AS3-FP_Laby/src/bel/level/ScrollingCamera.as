@@ -18,21 +18,23 @@ package bel.level
 			m_speed = 0;
 		}
 		
-		public function update():void 
+		public function update():Number
 		{
-			setY(getY() + FP.elapsed * m_speed);
+			return setY(getY() + FP.elapsed * m_speed);
 		}
 		
-		public function setX(x: Number): void 
+		public function setX(x: Number): Number 
 		{
 			m_x = x;
 			FP.camera.x = m_x;
+			return m_x;
 		}
 		
-		public function setY(y: Number): void 
+		public function setY(y: Number): Number 
 		{
 			m_y = y;
 			FP.camera.y = m_y;
+			return m_y;
 		}
 		
 		public function getX(): Number

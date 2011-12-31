@@ -1,7 +1,6 @@
 package bel.level 
 {
 	import net.flashpunk.graphics.Tilemap;
-	import bel.utils.GameGlobals;
 
 	/**
 	 * TODO
@@ -14,9 +13,6 @@ package bel.level
 			super(map, i, j);
 			this.tileIndexType = 1;
 			this.type = "obstacle";
-			this.width = Tile.SIZE_IN_PIXELS;
-			this.height = Tile.SIZE_IN_PIXELS;
-			GameGlobals.get.level.add(this);
 		}
 	}
 }
