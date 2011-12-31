@@ -19,46 +19,47 @@ package bel.level
 		public var m_pause:Boolean;
 		public function Level()
 		{
-			var globals: GameGlobals = GameGlobals.getInstance();
-			globals.setGridMap(new GridMap(64, 64));
-			add(globals.getGridMap());
+			var globals: GameGlobals = GameGlobals.get;
+
+			globals.level = this;
+
 			add(new Background());
-			var player: Player = new Player;
-			add(player);
-			globals.setPlayer(player);
-			add(new HUD());
-			globals.setCamera(new ScrollingCamera());
-			globals.getCamera().m_speed = 50;
-			m_pause = false;
+
+			globals.gridMap = new GridMap(64, 64);
+			add(globals.gridMap);
 			
+			add(new HUD());
+			
+			globals.player = new Player;
+			add(globals.player);
+			
+			globals.camera = new ScrollingCamera();
+			globals.camera.m_speed = 50;
+			m_pause = false;
 		}
 		
 		override public function update():void  
 		{
 			if (!m_pause) {
 				super.update();
-				GameGlobals.getInstance().getCamera().update();
+				GameGlobals.get.camera.update();
 			}
 			cheatCodes();
 		}
 		
 		public function cheatCodes():void 
 		{
-			var globals: GameGlobals = GameGlobals.getInstance();
+			var globals: GameGlobals = GameGlobals.get;
 			if (Input.check(Key.NUMPAD_8)) {
-				globals.getCamera().m_speed = -50;
+				globals.camera.m_speed = -50;
 			} else if (Input.check(Key.NUMPAD_5)) {
-				globals.getCamera().m_speed = 0;
+				globals.camera.m_speed = 0;
 			} else if (Input.check(Key.NUMPAD_2)) {
-				globals.getCamera().m_speed = 50;				
+				globals.camera.m_speed = 50;				
 			}
 			if (Input.check(Key.P)) {
 				m_pause = !m_pause;
 			}
 		}
-
-		
-
 	}
-
 }
