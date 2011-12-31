@@ -23,12 +23,13 @@ package bel.character
 		
 		public function Player() 
 		{
-			new DynGraphic("assets/playeranim.png", this,
-				function assign(img:BitmapData, p:Player):void { p.m_anim = new Spritemap(img, 32, 32); p.initAnim(); } );
+			new DynGraphic("assets/charset.png", this,
+				function assign(img:BitmapData, p:Player):void { p.m_anim = new Spritemap(img, 32, 64); p.initAnim(); } );
 			this.layer = 5;
 			this.type = "player";
 			this.width = Tile.SIZE_IN_PIXELS;
 			this.height = Tile.SIZE_IN_PIXELS;
+			this.setHitbox(this.width, this.height, 0, -this.height);
 		}
 		
 		private function initAnim():void
