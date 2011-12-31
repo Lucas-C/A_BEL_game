@@ -13,5 +13,13 @@ package bel.level
 			super(map, i, j);
 			tileIndexType = 0;
 		}
+
+		override public function appearOnGrid():void
+		{
+		}
+		
+		override public function disappearFromGrid():void
+		{
+		}
 	}
 }

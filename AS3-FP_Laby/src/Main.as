@@ -14,7 +14,9 @@ package
 		{
 			super(1024, 768, 60, false);
 			FP.world = new Level();
+			CONFIG::debug {
+				FP.console.enable();
+			}
 		}
-	}
-	
+	}	
 }
