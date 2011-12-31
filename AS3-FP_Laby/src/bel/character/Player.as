@@ -22,17 +22,21 @@ package bel.character
 		
 		public function Player() 
 		{
-			new DynGraphic("assets/playeranim.png", this,
-				function assign(img:BitmapData, p:Player):void { p.m_anim = new Spritemap(img, 32, 32); } );
+			new DynGraphic("assets/charset.png", this,
+				function assign(img:BitmapData, p:Player):void { p.m_anim = new Spritemap(img, 32, 64); } );
 			this.layer = 5;
 		}
 		
 		private function init():void
 		{
-			m_anim.add("normalup", [0, 7], PLAYER_FPS, true);
-			m_anim.add("normalright", [1, 2], PLAYER_FPS, true);
-			m_anim.add("normaldown", [3, 4], PLAYER_FPS, true);
-			m_anim.add("normalleft", [5, 6], PLAYER_FPS, true);
+			m_anim.add("staticdown", [0, 1, 2, 3], PLAYER_FPS, true);
+			m_anim.add("staticup", [4, 5, 6, 7], PLAYER_FPS, true);
+			m_anim.add("staticleft", [8,9,10,11], PLAYER_FPS, true);
+			m_anim.add("staticright", [12, 13, 14, 15], PLAYER_FPS, true);
+			m_anim.add("normaldown", [16, 17, 18, 19], PLAYER_FPS, true);
+			m_anim.add("normalup", [20, 21, 22, 23], PLAYER_FPS, true);
+			m_anim.add("normalleft", [24, 25, 26, 27], PLAYER_FPS, true);
+			m_anim.add("normalright", [28, 29, 30, 31], PLAYER_FPS, true);
 			m_anim.add("rushup", [8, 15], PLAYER_FPS, true);
 			m_anim.add("rushright", [9, 10], PLAYER_FPS, true);
 			m_anim.add("rushdown", [11, 12], PLAYER_FPS, true);
