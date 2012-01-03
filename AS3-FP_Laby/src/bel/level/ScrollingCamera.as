@@ -7,26 +7,26 @@ package bel.level
 	 */
 	public class ScrollingCamera 
 	{
-		private var m_x:Number; // private because when they are modified, 
-		private var m_y:Number; // FP.camera also has to be modified
-		public var m_speed:Number;
-		
-		public function ScrollingCamera() 
-		{
-			m_x = 0;
-			m_y = 0;
-			m_speed = 0;
-		}
+		private var m_x:Number = 0; // private because when they are modified, 
+		private var m_y:Number = 0; // FP.camera also has to be modified
+		private var m_xOffset:Number = 0;
+		public var speed:Number = 0;
 		
 		public function update():Number
 		{
-			return setY(getY() + FP.elapsed * m_speed);
+			return setY(getY() + FP.elapsed * speed);
+		}
+		
+		public function set xOffset(x:Number):void
+		{
+			m_xOffset = x;
+			FP.camera.x = m_x - m_xOffset;
 		}
 		
 		public function setX(x: Number): Number 
 		{
 			m_x = x;
-			FP.camera.x = m_x;
+			FP.camera.x = m_x - m_xOffset;
 			return m_x;
 		}
 		

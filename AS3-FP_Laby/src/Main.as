@@ -13,7 +13,7 @@ package
 		public function Main():void 
 		{
 			super(800, 600, 60, false);
-			FP.world = new Level();
+			FP.world = new Level("rhombus");
 			CONFIG::debug {
 				FP.console.enable();
 			}

@@ -6,7 +6,9 @@ package bel.level
 	import net.flashpunk.graphics.Tilemap;
 	import net.flashpunk.utils.Key;
 	import net.flashpunk.utils.Input;
-	import bel.utils.DynGraphic;
+	import bel.utils.assert;
+	import bel.utils.GameGlobals;
+	import bel.utils.dynamicGraphicLoader;
 	
 	/**
 	 * Container for tiles
@@ -15,63 +17,71 @@ package bel.level
 	 */
 	public class GridMap extends Entity
 	{
+		private const ASCII_ROW_SEP:String = "\n";
+		
 		private var m_initialised:Boolean = false;
-		private var m_widthInTiles:int;
-		private var m_heightInTiles:int;
-		private var m_levelLenghtInTiles:int;
-		private var m_progressInTiles:int;
+		private var m_widthInTiles:int = 0;
+		private var m_heightInTiles:int = 0;
+		private var m_lenghtInTiles:int = 0;
+		private var m_progressInTiles:int = 0;
+
+		private var m_loadedMap:XML;
 
 		private var m_tileMap:Tilemap; // Useful to render many tiles efficiently
 		private var labyLines:Array = new Array();
 		
 		public function GridMap()
 		{
-			m_widthInTiles = FP.width / Tile.SIZE_IN_PIXELS;
-			m_heightInTiles = FP.height / Tile.SIZE_IN_PIXELS + 1;
-			m_progressInTiles = 0
-			new DynGraphic("assets/tilesheet.png", this,
-				function assign(img:BitmapData, g:GridMap):void { g.tileSheet = img; g.initialised(); } );
-			layer = 9;
+			m_heightInTiles = FP.height / Tile.SIZE_IN_PIXELS + 1;;
+			this.layer = 9;
 		}
 		
-		public function initialised():void
+		public function initConfig(data:XML):void
 		{
-			m_initialised = true;
+			m_loadedMap = data;
+			var stringMap:String = new String(m_loadedMap);
+			var asciiMap:Array = stringMap.split(ASCII_ROW_SEP);
+			m_widthInTiles = asciiMap[0].length;
+			m_lenghtInTiles = asciiMap.length;
+			trace("Level length: " + m_lenghtInTiles);
+			assert(m_lenghtInTiles > m_heightInTiles);
+			dynamicGraphicLoader("tilesheet.png", setTileSheet);
 		}
-		
-		public function set tileSheet(img:BitmapData):void
+
+		public function setTileSheet(img:BitmapData):void
 		{
-			m_levelLenghtInTiles = 64;
-			m_tileMap = new Tilemap(img,
-				m_widthInTiles * Tile.SIZE_IN_PIXELS, m_levelLenghtInTiles * Tile.SIZE_IN_PIXELS,
+			this.graphic = m_tileMap = new Tilemap(img,
+				m_widthInTiles * Tile.SIZE_IN_PIXELS, m_lenghtInTiles * Tile.SIZE_IN_PIXELS,
 				Tile.SIZE_IN_PIXELS, Tile.SIZE_IN_PIXELS);
-			graphic = m_tileMap;
-			loadLevel();
+			width = m_tileMap.width;
+			height = m_tileMap.height;
+			// Centering camera
+			GameGlobals.get.camera.xOffset = (FP.width - width) / 2;
+			loadMap();
 		}
-		
-		public function loadLevel():void
+
+		public function loadMap():void
 		{
-			// TODO; include from XML
+			var stringMap:String = new String(m_loadedMap);
+			var asciiMap:Array = stringMap.split(ASCII_ROW_SEP);
+
 			// NOTE: loadFromString() bug with column = 0, row = 0, index = 1
-			for (var i:int = 0; i < m_levelLenghtInTiles; ++i) {
+			for (var i:int = 0; i < m_lenghtInTiles; ++i) {
 				labyLines[i] = new Array();
-				labyLines[i][0] = new EmptyFloor(m_tileMap, i, 0);
-				if (i < m_heightInTiles)
-					labyLines[i][0].appearOnGrid();
-				labyLines[i][m_widthInTiles - 1] = new EmptyFloor(m_tileMap, i, m_widthInTiles - 1);
-				if (i < m_heightInTiles)
-					labyLines[i][m_widthInTiles - 1].appearOnGrid();
-				for (var j:int = 1; j < m_widthInTiles - 1; ++j) {
-					//if (j == 1)
-						//trace(i); // WTF ?
-					if (!(i % 3) && (j % 6))
+				for (var j:int = 0; j < m_widthInTiles; ++j) {
+					switch(asciiMap[i].charAt(j)) {
+					case "x" :
 						labyLines[i][j] = new StaticObstacle(m_tileMap, i, j);
-					else
+						break;
+					default:
 						labyLines[i][j] = new EmptyFloor(m_tileMap, i, j);
+						break;
+					}
 					if (i < m_heightInTiles)
 						labyLines[i][j].appearOnGrid();
 				}
 			}
+			m_initialised = true;
 		}
 		
 		/**
@@ -82,8 +92,7 @@ package bel.level
 			if (!m_initialised)
 				return true;
 			var currentProgressInTiles:int = progress / Tile.SIZE_IN_PIXELS;
-			trace(currentProgressInTiles);
-			if (currentProgressInTiles + m_heightInTiles > m_levelLenghtInTiles)
+			if (currentProgressInTiles + m_heightInTiles > m_lenghtInTiles)
 				return false;
 			// Assume only one line can be skipped at a time
 			if (currentProgressInTiles > m_progressInTiles) {

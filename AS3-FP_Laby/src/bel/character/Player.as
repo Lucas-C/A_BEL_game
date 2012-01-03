@@ -5,7 +5,7 @@ package bel.character
 	import net.flashpunk.graphics.Spritemap;
 	import net.flashpunk.utils.Input;
 	import net.flashpunk.utils.Key;
-	import bel.utils.DynGraphic;
+	import bel.utils.dynamicGraphicLoader;
 	import bel.level.Tile;
 	
 	/**
@@ -24,8 +24,7 @@ package bel.character
 		
 		public function Player() 
 		{
-			new DynGraphic("assets/charset.png", this,
-				function assign(img:BitmapData, p:Player):void { p.m_anim = new Spritemap(img, 32, 64); p.initAnim(); } );
+			dynamicGraphicLoader("charset.png", initAnim);
 			this.layer = 5;
 			this.type = "player";
 			this.width = Tile.SIZE_IN_PIXELS;
@@ -33,8 +32,9 @@ package bel.character
 			this.setHitbox(this.width, this.height, 0, -this.height);
 		}
 		
-		private function initAnim():void
+		private function initAnim(img:BitmapData):void
 		{
+			m_anim = new Spritemap(img, 32, 64);
 			m_anim.add("staticdown", [0, 1, 2, 3], PLAYER_FPS, true);
 			m_anim.add("staticup", [4, 5, 6, 7], PLAYER_FPS, true);
 			m_anim.add("staticleft", [8,9,10,11], PLAYER_FPS, true);

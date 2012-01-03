@@ -3,7 +3,7 @@ package bel.level
 	import flash.display.BitmapData;
 	import net.flashpunk.Entity;
 	import net.flashpunk.graphics.Image;
-	import bel.utils.DynGraphic;
+	import bel.utils.dynamicGraphicLoader;
 		
 	/**
 	 * Image behind the level
@@ -16,17 +16,18 @@ package bel.level
 		public function Background() 
 		{
 			if (sharedGraphic == null)
-				new DynGraphic("assets/background.png", this,
-					function assign(img:BitmapData, e:Entity):void {
-						if (Background.sharedGraphic == null)
-							e.graphic = Background.sharedGraphic = new Image(img);
-						else
-							e.graphic = Background.sharedGraphic;
-					}
-				);
+				dynamicGraphicLoader("background.png", setSharedGraphic);
 			else
 				this.graphic = sharedGraphic;
 			this.layer = 10;
+		}
+
+		public function setSharedGraphic(img:BitmapData):void
+		{
+			if (sharedGraphic == null)
+				this.graphic = sharedGraphic = new Image(img);
+			else
+				this.graphic = sharedGraphic;			
 		}
 	}
 
