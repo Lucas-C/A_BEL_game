@@ -91,3 +91,18 @@ SEANCE CODE 12/12/11
 
 - inspis : The Adventures of Charles Dumbbell, Star Guard, Monaco, Bomberman
 "Error #2000: Aucun contexte de sécurité n'est actif" => erreur chargement image
+
+
+SEANCE CODE/PIXELART 30/12/11
+- sprite du perso ppal
+- début de code du scolling vertical avec chargement progressif du niveau
+- début de HUD
+- gestion de la camera
+- GameGlobals
+
+
+FINITIONS dans le train 3/01/12
+- transparence pour le sprite du personnage
+- défilement du niveau (avec chargement progressif pour pas que ça rame)
+- niveaux configurables dans des fichiers XML (dans le dossiers "levels")
+- nettoyage du code source (chargement des images désormais bien plus beau)
