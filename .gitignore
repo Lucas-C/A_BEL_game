@@ -1,2 +1,4 @@
 *.swf
 obj/
+*Config.old
+*Config.xml

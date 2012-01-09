@@ -15,13 +15,14 @@ package bel.utils
 	{
 		var imgLoader:Loader = new Loader();
 		imgLoader.contentLoaderInfo.addEventListener(Event.INIT,
-			function imgLoadingCallback (e:Event):void {
+			function imgLoadingCallback():void {
 				assert(imgLoader.content != null); // If it fails, image wasn't found
 				var bitmap:Bitmap = Bitmap(imgLoader.content);
 				var bitmapData:BitmapData = bitmap.bitmapData;
 				callback(bitmapData);
 			}
 		);
+		//imgLoader.contentLoaderInfo.addEventListener(Event.CANCEL, FP.log);
 		imgLoader.load(new URLRequest("assets/" + filename));
 	}
 }

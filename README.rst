@@ -106,3 +106,12 @@ FINITIONS dans le train 3/01/12
 - défilement du niveau (avec chargement progressif pour pas que ça rame)
 - niveaux configurables dans des fichiers XML (dans le dossiers "levels")
 - nettoyage du code source (chargement des images désormais bien plus beau)
+
+DEBUG 9/01/12
+-> installé flashplayer_11_plugin_debug_32bit.exe
+(from http://www.adobe.com/support/flashplayer/downloads.html, version "Netscape-compatible browsers")
+-> Cygwin : alias wFlash='tail -f ~/AppData/Roaming/Macromedia/Flash\ Player/Logs/flashlog.txt'
+=> pas d'extension Firefox (FlashTracer avait l'air cool mais pas compatible avec v9)
+(thx to http://noahlittle.wordpress.com/2008/04/15/see-actionscript-trace-from-swf-running-in-the-browser/)
+=> fichier de configuration macromedia flash : mm.cfg (in $USER dir)
+FINAL SOLUTION : option -use-network=false du compilateur !!!
